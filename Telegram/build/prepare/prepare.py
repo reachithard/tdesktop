@@ -395,7 +395,7 @@ if customRunCommand:
     finish(0)
 
 stage('patches', """
-    git clone https://github.com/desktop-app/patches.git
+    git clone git@github.com:desktop-app/patches.git
     cd patches
     git checkout b14854c6f6
 """)
@@ -455,7 +455,7 @@ mac:
 
 stage('yasm', """
 mac:
-    git clone https://github.com/yasm/yasm.git
+    git clone git@github.com:yasm/yasm.git
     cd yasm
     git checkout 41762bea
     ./autogen.sh
@@ -464,7 +464,7 @@ mac:
 
 stage('lzma', """
 win:
-    git clone https://github.com/desktop-app/lzma.git
+    git clone git@github.com:desktop-app/lzma.git
     cd lzma\\C\\Util\\LzmaLib
     msbuild LzmaLib.sln /property:Configuration=Debug /property:Platform="$X8664"
 release:
@@ -485,7 +485,7 @@ stage('xz', """
 """)
 
 stage('zlib', """
-    git clone -b v1.2.11 https://github.com/madler/zlib.git
+    git clone -b v1.2.11 git@github.com:madler/zlib.git
     cd zlib
 win:
     cmake . ^
@@ -506,7 +506,7 @@ mac:
 """)
 
 stage('mozjpeg', """
-    git clone -b v4.0.3 https://github.com/mozilla/mozjpeg.git
+    git clone -b v4.0.3 git@github.com:mozilla/mozjpeg.git
     cd mozjpeg
 win:
     cmake . ^
@@ -543,7 +543,7 @@ mac:
 """)
 
 stage('openssl', """
-    git clone -b OpenSSL_1_1_1-stable https://github.com/openssl/openssl openssl
+    git clone -b OpenSSL_1_1_1-stable git@github.com:openssl/openssl openssl
     cd openssl
 win32:
     perl Configure no-shared no-tests debug-VC-WIN32
@@ -586,7 +586,7 @@ mac:
 """)
 
 stage('opus', """
-    git clone -b v1.3.1 https://github.com/xiph/opus.git
+    git clone -b v1.3.1 git@github.com:xiph/opus.git
     cd opus
     git cherry-pick 927de8453c
 win:
@@ -608,7 +608,7 @@ mac:
 """)
 
 stage('rnnoise', """
-    git clone https://github.com/desktop-app/rnnoise.git
+    git clone git@github.com:desktop-app/rnnoise.git
     cd rnnoise
     mkdir out
     cd out
@@ -658,7 +658,7 @@ mac:
 """)
 
 stage('libvpx', """
-    git clone https://github.com/webmproject/libvpx.git
+    git clone git@github.com:webmproject/libvpx.git
 depends:patches/libvpx/*.patch
     cd libvpx
     git checkout v1.11.0
@@ -724,13 +724,13 @@ depends:yasm/yasm
 
 stage('nv-codec-headers', """
 win:
-    git clone https://github.com/FFmpeg/nv-codec-headers.git
+    git clone git@github.com:FFmpeg/nv-codec-headers.git
     cd nv-codec-headers
     git checkout n11.1.5.1
 """)
 
 stage('ffmpeg', """
-    git clone https://github.com/FFmpeg/FFmpeg.git ffmpeg
+    git clone git@github.com:FFmpeg/FFmpeg.git ffmpeg
     cd ffmpeg
     git checkout cc33e73618
 win:
@@ -999,7 +999,7 @@ depends:yasm/yasm
 stage('openal-soft', """
 version: 2
 win:
-    git clone -b wasapi_exact_device_time https://github.com/telegramdesktop/openal-soft.git
+    git clone -b wasapi_exact_device_time git@github.com:telegramdesktop/openal-soft.git
     cd openal-soft
     cmake -B build . ^
         -A %WIN32X64% ^
@@ -1009,7 +1009,7 @@ win:
 release:
     cmake --build build --config RelWithDebInfo --parallel
 mac:
-    git clone https://github.com/kcat/openal-soft.git
+    git clone git@github.com:kcat/openal-soft.git
     cd openal-soft
     git checkout 1.22.2
     CFLAGS=$UNGUARDED CPPFLAGS=$UNGUARDED cmake -B build . \\
@@ -1031,7 +1031,7 @@ mac:
     git checkout dfcb7b6799
 depends:patches/breakpad.diff
     git apply ../patches/breakpad.diff
-    git clone -b release-1.11.0 https://github.com/google/googletest src/testing
+    git clone -b release-1.11.0 git@github.com:google/googletest src/testing
     git clone https://chromium.googlesource.com/linux-syscall-support src/third_party/lss
     cd src/third_party/lss
     git checkout e1e7b0ad8e
@@ -1048,7 +1048,7 @@ stage('breakpad', """
     git checkout dfcb7b6799
 depends:patches/breakpad.diff
     git apply ../patches/breakpad.diff
-    git clone -b release-1.11.0 https://github.com/google/googletest src/testing
+    git clone -b release-1.11.0 git@github.com:google/googletest src/testing
 win:
     SET "PYTHONUTF8=1"
     if "%X8664%" equ "x64" (
@@ -1081,7 +1081,7 @@ release:
 
 stage('crashpad', """
 mac:
-    git clone https://github.com/desktop-app/crashpad.git
+    git clone git@github.com:desktop-app/crashpad.git
     cd crashpad
     git checkout c1b7afa2fd
     git submodule init
@@ -1141,7 +1141,7 @@ release:
 
 stage('tg_angle', """
 win:
-    git clone https://github.com/desktop-app/tg_angle.git
+    git clone git@github.com:desktop-app/tg_angle.git
     cd tg_angle
     git checkout 0bb011f9e4
     mkdir out
@@ -1283,7 +1283,7 @@ mac:
 """)
 
 stage('tg_owt', """
-    git clone https://github.com/desktop-app/tg_owt.git
+    git clone git@github.com:desktop-app/tg_owt.git
     cd tg_owt
     git checkout bab760d7bd
     git submodule init
